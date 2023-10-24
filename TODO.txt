@@ -1,0 +1,7 @@
+#weather link for JSON ref
+https://api.openweathermap.org/data/2.5/weather?q=viseu&appid=338ebfa074a6c17c9d1872b45230e82c
+
+
+
+- Criar uma lista dos comandos bonita
+- Analisar e criar mais comandos da lista "ideias.txt"
