@@ -1,4 +1,5 @@
 import settings
+import random
 
 fPath = '.\db\gambling.mydb'
 
@@ -21,4 +22,34 @@ def GetUserFunds(ID):
     with open(fPath, 'r') as fR:
         for line in fR:
             _id, _funds = line.split(':')
-            return (_funds.strip('\n'))
+            return int(_funds.strip('\n'))
+
+def SetUserFunds(ID, amount):
+    # set the user fund
+    return None
+
+
+
+def StartRoulette(amount, choice):
+    percent = random.randrange(0, 100)
+    spin = ''
+
+    if percent <= 45:
+        spin = 'red'
+    if percent <= 90:
+        spin = 'black'
+    if percent > 90:
+        spin = 'white'
+
+    if choice == spin:
+        if choice == 'red':
+            return f'{spin}:{int(amount) * 2}'
+        elif choice == 'black':
+            return f'{spin}:{int(amount) * 2}'
+        elif choice == 'white':
+            return f'{spin}:{int(amount) * 14}'
+    else:
+        return f'{spin}:{0}'
+    
+
+SetUserFunds(307513931013029889, 999)

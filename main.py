@@ -182,9 +182,24 @@ async def gambling(ctx):
     await ctx.message.delete()
 
     if dbM.CheckIsUserInDB(userID):
-        await ctx.send(f'{ctx.author.mention} You already have an bank account with **{dbM.GetUserFunds(userID)}** bucks!')
+        await ctx.send(f'{ctx.author.mention} You already have an bank account with **{dbM.GetUserFunds(userID)}**$!')
     else:
-        await ctx.send(f'{ctx.author.mention} You have created your bank account with **{settings.GetDefaultBankFunds()}** bucks to gamble in the tavern!')
+        await ctx.send(f'{ctx.author.mention} You have created your bank account with **{settings.GetDefaultBankFunds()}**$ to gamble in the tavern!')
+
+@bot.command()
+async def bet(ctx, amount, choice):
+    userID = ctx.author.id
+
+    await ctx.message.delete()
+    if choice == 'red' or choice == 'black' or choice == 'white':
+        if dbM.GetUserFunds(userID) >= int(amount):
+            out1, out2 = dbM.StartRoulette(amount, choice).split(':')
+            print(out1, out2)
+            await ctx.send(f'You bet **{amount}**$ on **{choice}**')
+        else:
+            await ctx.send(f'You don\'t have **{amount}**$ to bet')
+    else:
+        await ctx.send('Please select an valid choice (white / red / black)')
         
 
 bot.run(token)
