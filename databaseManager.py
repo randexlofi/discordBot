@@ -25,9 +25,7 @@ def GetUserFunds(ID):
             return int(_funds.strip('\n'))
 
 def SetUserFunds(ID, amount):
-    # set the user fund
     return None
-
 
 
 def StartRoulette(amount, choice):
@@ -50,6 +48,4 @@ def StartRoulette(amount, choice):
             return f'{spin}:{int(amount) * 14}'
     else:
         return f'{spin}:{0}'
-    
-
-SetUserFunds(307513931013029889, 999)
+        

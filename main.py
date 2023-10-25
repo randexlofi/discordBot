@@ -77,6 +77,44 @@ async def clearChat(ctx, amount=0):
         await ctx.message.delete()
         await ctx.send("You need to specify an number.\nExample: !clearChat 10")
 
+@bot.command()
+async def createChannel(ctx, _type, channel_name):
+    guild = ctx.guild
+    await ctx.message.delete()
+
+    if _type == 'text':
+        await guild.create_text_channel(channel_name)
+        await ctx.send(f'Channel #{channel_name} of type text has been created!')
+    elif _type == 'voice':
+        await guild.create_voice_channel(channel_name)
+        await ctx.send(f'Channel #{channel_name} of type voice has been created!')
+    else:
+        await ctx.send(f'The channel **{channel_name}** can\'t be created!')
+
+@bot.command()
+async def deleteChannel(ctx, _type, channel_name):
+    guild = ctx.guild
+
+    await ctx.message.delete()
+    channel = discord.utils.get(guild.channels, name=channel_name)
+
+    if _type == 'text':
+        if channel and isinstance(channel, discord.TextChannel):
+            await channel.delete()
+            await ctx.send(f'Text channel `{channel_name}` has been deleted!')
+        else:
+            await ctx.send(f'Text channel `{channel_name}` not found or not a text channel.')
+    elif _type == 'voice':
+        if channel and isinstance(channel, discord.VoiceChannel):
+            await channel.delete()
+            await ctx.send(f'Voice channel `{channel_name}` has been deleted!')
+        else:
+            await ctx.send(f'Voice channel `{channel_name}` not found or not a voice channel.')
+    else:
+        await ctx.send(f'Invalid channel type. Please use "text" or "voice".')
+
+
+
         
 
 
