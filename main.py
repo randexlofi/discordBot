@@ -83,11 +83,11 @@ async def createChannel(ctx, _type, channel_name):
     await ctx.message.delete()
 
     if _type == 'text':
-        await guild.create_text_channel(channel_name)
-        await ctx.send(f'Channel #{channel_name} of type text has been created!')
+        newChannel = await guild.create_text_channel(channel_name)
+        await ctx.send(f'Channel {newChannel.mention} of type text has been created!')
     elif _type == 'voice':
-        await guild.create_voice_channel(channel_name)
-        await ctx.send(f'Channel #{channel_name} of type voice has been created!')
+        newChannel = await guild.create_text_channel(channel_name)
+        await ctx.send(f'Channel {newChannel.mention} of type voice has been created!')
     else:
         await ctx.send(f'The channel **{channel_name}** can\'t be created!')
 
