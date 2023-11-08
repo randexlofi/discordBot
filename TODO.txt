@@ -1,5 +1,5 @@
 #weather link for JSON ref
-https://api.openweathermap.org/data/2.5/weather?q=viseu&appid=338ebfa074a6c17c9d1872b45230e82c
+https://api.openweathermap.org/data/2.5/weather?q=viseu&appid=TOKEN
 
 
 
